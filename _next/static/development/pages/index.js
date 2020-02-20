@@ -10926,30 +10926,32 @@ var Index = function Index(props) {
 };
 
 Index.getInitialProps = function _callee() {
-  var precio, noticias, resPrecio, resNoticias;
+  var f, date, precio, noticias, resPrecio, resNoticias;
   return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.async(function _callee$(_context) {
     while (1) {
       switch (_context.prev = _context.next) {
         case 0:
-          _context.next = 2;
+          f = new Date();
+          date = "".concat(f.getFullYear(), "-").concat(f.getMonth() === 0 ? '0' + (f.getMonth() + 1) : f.getMonth() < 10 ? '0' + f.getMonth() : f.getMonth(), "-").concat(f.getDate());
+          _context.next = 4;
           return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_6___default()('https://api.coinmarketcap.com/v2/ticker/1/'));
 
-        case 2:
+        case 4:
           precio = _context.sent;
-          _context.next = 5;
-          return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_6___default()('http://newsapi.org/v2/everything?q=bitcoin&from=2020-01-20&sortBy=publishedAt&apiKey=d85696289f8043719be66f4d4b455600&language=es'));
+          _context.next = 7;
+          return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(isomorphic_unfetch__WEBPACK_IMPORTED_MODULE_6___default()("http://newsapi.org/v2/everything?q=bitcoin&from=".concat(date, "&sortBy=publishedAt&apiKey=d85696289f8043719be66f4d4b455600&language=es")));
 
-        case 5:
+        case 7:
           noticias = _context.sent;
-          _context.next = 8;
+          _context.next = 10;
           return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(precio.json());
 
-        case 8:
+        case 10:
           resPrecio = _context.sent;
-          _context.next = 11;
+          _context.next = 13;
           return _babel_runtime_corejs2_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.awrap(noticias.json());
 
-        case 11:
+        case 13:
           resNoticias = _context.sent;
           return _context.abrupt("return", {
             precioBitcoin: resPrecio.data.quotes.USD,
@@ -10957,7 +10959,7 @@ Index.getInitialProps = function _callee() {
             eventos: resNoticias.articles
           });
 
-        case 13:
+        case 15:
         case "end":
           return _context.stop();
       }
